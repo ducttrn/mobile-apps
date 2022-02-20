@@ -20,6 +20,7 @@ public class SecondActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
 
+        // Get conversion type
         Intent intent = getIntent();
         int conversion_type_id = intent.getIntExtra("conversionTypeId", DEFAULT_VALUE);
 
@@ -44,6 +45,7 @@ public class SecondActivity extends AppCompatActivity {
             out = kilometer;
         }
 
+        // Display conversion type
         title.setText(getString(R.string.title, in, out));
         input_box.setHint(getString(R.string.input_hint, in));
 
@@ -58,6 +60,7 @@ public class SecondActivity extends AppCompatActivity {
             try {
                 double result;
                 EditText input_box = findViewById(R.id.input_box);
+                // Get user input and perform conversion
                 double input = Double.parseDouble(input_box.getText().toString());
                 if (conversion_type_id == 1) {
                     result = input * 2.2;
