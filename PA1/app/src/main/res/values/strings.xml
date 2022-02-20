@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">PA1</string>
+    <string name="app_name">UnitConverter</string>
     <string name="kilogram_kg_to_pounds_ib">Kilogram(Kg) to Pounds (Ib)</string>
     <string name="pounds_lb_to_kilograms_kg">Pounds(lb) to Kilograms(Kg)</string>
     <string name="kilometers_km_to_miles_mi">Kilometers(Km) to Miles(mi)</string>

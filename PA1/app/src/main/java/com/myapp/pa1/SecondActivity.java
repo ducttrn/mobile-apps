@@ -21,7 +21,7 @@ public class SecondActivity extends AppCompatActivity {
         setContentView(R.layout.activity_second);
 
         Intent intent = getIntent();
-        int conversion_type_id = intent.getIntExtra("conversion_type_id", DEFAULT_VALUE);
+        int conversion_type_id = intent.getIntExtra("conversionTypeId", DEFAULT_VALUE);
 
         TextView title = findViewById(R.id.conversion_title);
         EditText input_box = findViewById(R.id.input_box);
