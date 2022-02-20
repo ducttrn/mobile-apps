@@ -62,21 +62,20 @@ public class MainActivity extends AppCompatActivity {
 
                 // Start new activity
                 if (conversionTypeId != -1) {
-                    //openNewActivity(conversionTypeId);
+                    openNewActivity(conversionTypeId);
                 }
             }
         });
     }
 
-    // TODO: Sending data to second activity
     void openNewActivity(int conversionTypeId)
     {
         // Creating an Intent
-        //Intent i = new Intent(getApplicationContext(), SecondActivity.class);
+        Intent i = new Intent(getApplicationContext(), SecondActivity.class);
 
-        //i.putExtra("conversionTypeId", conversionTypeId);
+        i.putExtra("conversionTypeId", conversionTypeId);
 
         // Start new Activity
-        //startActivity(i);
+        startActivity(i);
     }
 }
