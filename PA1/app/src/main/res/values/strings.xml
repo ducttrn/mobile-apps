@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">PA1</string>
+    <string name="kilogram_kg_to_pounds_ib">Kilogram(Kg) to Pounds (Ib)</string>
+    <string name="pounds_lb_to_kilograms_kg">Pounds(lb) to Kilograms(Kg)</string>
+    <string name="kilometers_km_to_miles_mi">Kilometers(Km) to Miles(mi)</string>
+    <string name="miles_mi_to_kilometers_km">Miles(mi) to Kilometers(Km)</string>
+    <string name="the_best_unit_converter">The Best Unit Converter</string>
+    <string name="coming_from_a_country_using_the_metric_system_have_you_ever_had_a_problem_with_the_imperial_system_when_coming_to_the_us_well_if_yes_this_is_the_app_for_you_so_how_just_pick_a_metric_and_we_will_help_you_do_the_math_at_no_charge">Coming from a country using the metric system, have you ever had a problem with the Imperial system when coming to the US? Well if yes, this is the app for you! So How? Just pick a metric, and we will help you do the math at no charge!</string>
+    <string name="launch_converter">Launch Converter</string>
 </resources>
