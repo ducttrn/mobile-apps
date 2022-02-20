@@ -7,4 +7,10 @@
     <string name="the_best_unit_converter">The Best Unit Converter</string>
     <string name="coming_from_a_country_using_the_metric_system_have_you_ever_had_a_problem_with_the_imperial_system_when_coming_to_the_us_well_if_yes_this_is_the_app_for_you_so_how_just_pick_a_metric_and_we_will_help_you_do_the_math_at_no_charge">Coming from a country using the metric system, have you ever had a problem with the Imperial system when coming to the US? Well if yes, this is the app for you! So How? Just pick a metric, and we will help you do the math at no charge!</string>
     <string name="launch_converter">Launch Converter</string>
+    <string name="convert">Convert</string>
+    <string name="start_over">start over</string>
+    <string name="title">"Converting measurements from %1$s to %2$s</string>
+    <string name="input_hint">Enter a measurement in %1$s</string>
+    <string name="invalid_input">Invalid input</string>
+    <string name="output">Output: %2$.2f %1$s</string>
 </resources>
