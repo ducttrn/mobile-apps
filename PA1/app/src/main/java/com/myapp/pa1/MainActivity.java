@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.RadioButton;
-import android.view.View;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,53 +16,40 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button launchConverter = (Button) findViewById(R.id.launch_converter);
-        RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radio_group);
+        Button launchConverter = findViewById(R.id.launch_converter);
+        RadioGroup radioGroup = findViewById(R.id.radio_group);
 
         // Clear any checked radio button
         radioGroup.clearCheck();
 
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(RadioGroup radioGroup, int checkedId)
-                    {
-
-                        // Retrieve the ID of selected radio button
-                        RadioButton radioButton = (RadioButton) radioGroup.findViewById(checkedId);
-                    }
-                });
+        radioGroup.setOnCheckedChangeListener((radioGroup1, checkedId) -> {
+            // Retrieve the ID of selected radio button
+            RadioButton radioButton = radioGroup1.findViewById(checkedId);
+        });
 
         // Add the Listener to the Submit Button
-        launchConverter.setOnClickListener(new View.OnClickListener() {
+        launchConverter.setOnClickListener(view -> {
+            int selectedButtonId = radioGroup.getCheckedRadioButtonId();
+            RadioButton radioButton = radioGroup.findViewById(selectedButtonId);
 
-            @Override
-            public void onClick(View v)
-            {
+            int conversionTypeId;
+            int radioButtonId = radioGroup.getCheckedRadioButtonId();
 
-                int selectedButtonId = radioGroup.getCheckedRadioButtonId();
+            if (radioButtonId == findViewById(R.id.radio_button_1).getId()) {
+                conversionTypeId = 1;
+            } else if (radioButtonId == findViewById(R.id.radio_button_2).getId()) {
+                conversionTypeId = 2;
+            } else if (radioButtonId == findViewById(R.id.radio_button_3).getId()) {
+                conversionTypeId = 3;
+            } else if (radioButtonId == findViewById(R.id.radio_button_4).getId()) {
+                conversionTypeId = 4;
+            } else {
+                conversionTypeId = -1;
+            }
 
-
-                RadioButton radioButton = (RadioButton) radioGroup.findViewById(selectedButtonId);
-
-                int conversionTypeId;
-                int radioButtonId = radioGroup.getCheckedRadioButtonId();
-
-                if (radioButtonId == findViewById(R.id.radio_button_1).getId()) {
-                    conversionTypeId = 1;
-                } else if (radioButtonId == findViewById(R.id.radio_button_2).getId()) {
-                    conversionTypeId = 2;
-                } else if (radioButtonId == findViewById(R.id.radio_button_3).getId()) {
-                    conversionTypeId = 3;
-                } else if (radioButtonId == findViewById(R.id.radio_button_4).getId()) {
-                    conversionTypeId = 4;
-                } else {
-                    conversionTypeId = -1;
-                }
-
-                // Start new activity
-                if (conversionTypeId != -1) {
-                    openNewActivity(conversionTypeId);
-                }
+            // Start new activity if user has selected an option
+            if (conversionTypeId != -1) {
+                openNewActivity(conversionTypeId);
             }
         });
     }
@@ -70,11 +57,10 @@ public class MainActivity extends AppCompatActivity {
     void openNewActivity(int conversionTypeId)
     {
         // Creating an Intent
-        Intent i = new Intent(getApplicationContext(), SecondActivity.class);
-
-        i.putExtra("conversionTypeId", conversionTypeId);
+        Intent intent = new Intent(getApplicationContext(), SecondActivity.class);
+        intent.putExtra("conversionTypeId", conversionTypeId);
 
         // Start new Activity
-        startActivity(i);
+        startActivity(intent);
     }
 }

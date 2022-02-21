@@ -26,8 +26,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:text="@string/coming_from_a_country_using_the_metric_system_have_you_ever_had_a_problem_with_the_imperial_system_when_coming_to_the_us_well_if_yes_this_is_the_app_for_you_so_how_just_pick_a_metric_and_we_will_help_you_do_the_math_at_no_charge"
-        android:textSize="12sp"
+        android:text="@string/intro"
+        android:textSize="16sp"
         android:textStyle="italic"
         app:layout_constraintBottom_toTopOf="@+id/radio_group"
         app:layout_constraintEnd_toEndOf="parent"
@@ -52,28 +52,28 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/kilogram_kg_to_pounds_ib"
-            android:textSize="12sp" />
+            android:textSize="14sp" />
 
         <RadioButton
             android:id="@+id/radio_button_2"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/pounds_lb_to_kilograms_kg"
-            android:textSize="12sp" />
+            android:textSize="14sp" />
 
         <RadioButton
             android:id="@+id/radio_button_3"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/kilometers_km_to_miles_mi"
-            android:textSize="12sp" />
+            android:textSize="14sp" />
 
         <RadioButton
             android:id="@+id/radio_button_4"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/miles_mi_to_kilometers_km"
-            android:textSize="12sp" />
+            android:textSize="14sp" />
     </RadioGroup>
 
     <Button
