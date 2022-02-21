@@ -19,17 +19,20 @@ public class MainActivity extends AppCompatActivity {
         Button launchConverter = findViewById(R.id.launch_converter);
         RadioGroup radioGroup = findViewById(R.id.radio_group);
 
-        // Clear any checked radio button
+        // Clear any checked radio button. Default: no button is checked
         radioGroup.clearCheck();
 
+        // Listener func for the RadioGroup buttons
         radioGroup.setOnCheckedChangeListener((radioGroup1, checkedId) -> {
             // Retrieve the ID of selected radio button
             RadioButton radioButton = radioGroup1.findViewById(checkedId);
         });
 
-        // Add the Listener to the Submit Button
+        // Add the Listener to the Launch converter Button
         launchConverter.setOnClickListener(view -> {
+            // Get the ID of the selected radio Button
             int selectedButtonId = radioGroup.getCheckedRadioButtonId();
+
             RadioButton radioButton = radioGroup.findViewById(selectedButtonId);
 
             int conversionTypeId;
@@ -48,12 +51,17 @@ public class MainActivity extends AppCompatActivity {
             }
 
             // Start new activity if user has selected an option
+            // Won't switch screen if no RadioButton is choosen
             if (conversionTypeId != -1) {
                 openNewActivity(conversionTypeId);
             }
         });
     }
-
+    /**
+     *  Navigating to new Activity
+     * 
+     * @param conversionTypeId
+     */
     void openNewActivity(int conversionTypeId)
     {
         // Creating an Intent
