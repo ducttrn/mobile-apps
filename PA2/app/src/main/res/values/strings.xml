@@ -8,4 +8,5 @@
     <string name="delete_book">Delete Book</string>
     <string name="title">Title:</string>
     <string name="author">Author:</string>
+    <string name="update_book">Update book</string>
 </resources>
