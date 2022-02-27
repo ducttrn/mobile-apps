@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.myapp.pa2.model.Book;
 
@@ -19,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     private ArrayList<Book> bookList;
 
-    private void dataLoading() {
+    private void loadData() {
         bookList = new ArrayList<>();
 
         addSampleData();
@@ -31,26 +30,32 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         recyclerView = findViewById(R.id.book_list);
-        dataLoading();
+        loadData();
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
-
-        //recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new BookAdapter(this, bookList));
 
-        DividerItemDecoration verticalDecoration = new DividerItemDecoration(recyclerView.getContext(),
-                DividerItemDecoration.HORIZONTAL);
-        Drawable verticalDivider = ContextCompat.getDrawable(MainActivity.this, R.drawable.vertical_divider);
+        DividerItemDecoration verticalDecoration = new DividerItemDecoration(
+                recyclerView.getContext(),
+                DividerItemDecoration.HORIZONTAL
+        );
+        Drawable verticalDivider = ContextCompat.getDrawable(
+                MainActivity.this,
+                R.drawable.vertical_divider
+        );
         verticalDecoration.setDrawable(verticalDivider);
-
         recyclerView.addItemDecoration(verticalDecoration);
 
-        DividerItemDecoration horizontalDecoration = new DividerItemDecoration(recyclerView.getContext(),
-                DividerItemDecoration.VERTICAL);
-        Drawable horizontalDivider = ContextCompat.getDrawable(MainActivity.this, R.drawable.horizontal_divider);
+        DividerItemDecoration horizontalDecoration = new DividerItemDecoration(
+                recyclerView.getContext(),
+                DividerItemDecoration.VERTICAL
+        );
+        Drawable horizontalDivider = ContextCompat.getDrawable(
+                MainActivity.this,
+                R.drawable.horizontal_divider
+        );
         horizontalDecoration.setDrawable(horizontalDivider);
-
         recyclerView.addItemDecoration(horizontalDecoration);
     }
 
