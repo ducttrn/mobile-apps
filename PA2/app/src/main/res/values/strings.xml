@@ -6,4 +6,6 @@
     <string name="title">Title:</string>
     <string name="author">Author:</string>
     <string name="update_book">Update book</string>
+    <string name="title_display">Title: %1$s</string>
+    <string name="author_display">Author: %1$s</string>
 </resources>

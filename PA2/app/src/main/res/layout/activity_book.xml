@@ -54,7 +54,7 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.11"
+        app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/delete_button"
         app:layout_constraintVertical_bias="0.0" />
@@ -69,7 +69,6 @@
         android:layout_marginBottom="394dp"
         android:autofillHints=""
         android:ems="10"
-        android:hint="@string/pride_and_prejudice"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:textColorHint="#757575"
@@ -78,7 +77,8 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/title_input"
         app:layout_constraintTop_toBottomOf="@+id/delete_button"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/author_input"
@@ -89,10 +89,10 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.12"
+        app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/title_input"
-        app:layout_constraintVertical_bias="0.124" />
+        app:layout_constraintVertical_bias="0.100000024" />
 
     <EditText
         android:id="@+id/author_input_box"
@@ -102,7 +102,6 @@
         android:layout_marginEnd="30dp"
         android:autofillHints=""
         android:ems="10"
-        android:hint="@string/jane_austen"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:textColorHint="#757575"
@@ -110,7 +109,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/author_input"
         app:layout_constraintTop_toTopOf="@+id/title_input_box"
-        app:layout_constraintVertical_bias="0.13" />
+        app:layout_constraintVertical_bias="0.110000014"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
         android:id="@+id/update_botton"
@@ -122,6 +122,6 @@
         app:layout_constraintHorizontal_bias="0.13"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/author_input"
-        app:layout_constraintVertical_bias="0.17000002" />
+        app:layout_constraintVertical_bias="0.13999999" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
