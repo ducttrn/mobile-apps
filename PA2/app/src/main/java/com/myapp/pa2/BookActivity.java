@@ -30,14 +30,14 @@ public class BookActivity extends AppCompatActivity {
             titleView.setText(getString(R.string.title_display, bookTitle));
 
             EditText titleInputBox = findViewById(R.id.title_input_box);
-            titleInputBox.setHint(bookTitle);
+            titleInputBox.setText(bookTitle);
 
             TextView authorView = findViewById(R.id.author_display);
             String bookAuthor = book.getAuthor();
             authorView.setText(getString(R.string.author_display, bookAuthor));
 
             EditText authorInputBox = findViewById(R.id.author_input_box);
-            authorInputBox.setHint(bookAuthor);
+            authorInputBox.setText(bookAuthor);
         }
         else {
             this.finish();
