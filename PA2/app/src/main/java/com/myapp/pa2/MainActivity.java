@@ -38,18 +38,11 @@ public class MainActivity extends AppCompatActivity implements BookAdapter.OnIte
 
         // Init DB instance
         dbHelper = BookSQLiteHelper.getInstance(this);
-        dbHelper.onUpgrade(dbHelper.getWritableDatabase(), 1, 2);
-        initDatabase();
-
         recyclerView = findViewById(R.id.book_list);
-
         loadData();
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
-
-
-        // Add horizontal + vertical dividers for each book row
         addDividers();
     }
 
@@ -64,26 +57,6 @@ public class MainActivity extends AppCompatActivity implements BookAdapter.OnIte
         );
         horizontalDecoration.setDrawable(horizontalDivider);
         recyclerView.addItemDecoration(horizontalDecoration);
-    }
-
-    private void initDatabase() {
-        ArrayList<Book> bookListSample = new ArrayList<>();
-
-        bookListSample.add(new Book("The Hobbit", "J R R Tolkien"));
-        bookListSample.add(new Book("The Da Vinci Code", "Dan Brown"));
-        bookListSample.add(new Book("The Official Highway Code", "Department for Transport"));
-        bookListSample.add(new Book("Fifty Shades of Grey", "E L James"));
-        bookListSample.add(new Book("To Kill a Mockingbird", "Harper Lee"));
-        bookListSample.add(new Book("Jamie’s 15 minute meals", "Jamie Oliver"));
-        bookListSample.add(new Book("The BFG", "Roald Dahl"));
-        bookListSample.add(new Book("Great Expectations", "Charles Dickens"));
-        bookListSample.add(new Book("Animal Farm", "George Orwell"));
-        bookListSample.add(new Book("1984", "George Orwell"));
-
-        for (Book book : bookListSample) {
-            dbHelper.addBook(book);
-        }
-
     }
 
     @Override
