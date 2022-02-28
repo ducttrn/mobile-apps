@@ -21,11 +21,11 @@ public class MainActivity extends AppCompatActivity implements BookAdapter.OnIte
 
     RecyclerView recyclerView;
     private ArrayList<Book> bookList;
-    BookSQLiteHelper db_helper;
+    BookSQLiteHelper dbHelper;
     BookAdapter bookAdapter;
 
     private void loadData() {
-        bookList = db_helper.getAllBooks();
+        bookList = dbHelper.getAllBooks();
 
         bookAdapter = new BookAdapter(bookList, this);
         recyclerView.setAdapter(bookAdapter);
@@ -37,8 +37,8 @@ public class MainActivity extends AppCompatActivity implements BookAdapter.OnIte
         setContentView(R.layout.activity_main);
 
         // Init DB instance
-        db_helper = BookSQLiteHelper.getInstance(this);
-        db_helper.onUpgrade(db_helper.getWritableDatabase(), 1, 2);
+        dbHelper = BookSQLiteHelper.getInstance(this);
+        dbHelper.onUpgrade(dbHelper.getWritableDatabase(), 1, 2);
         initDatabase();
 
         recyclerView = findViewById(R.id.book_list);
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements BookAdapter.OnIte
         bookListSample.add(new Book("The Girl with the Dragon Tattoo", "Stieg Larsson"));
 
         for (Book book : bookListSample) {
-            db_helper.addBook(book);
+            dbHelper.addBook(book);
         }
 
     }
@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity implements BookAdapter.OnIte
 
     @Override
     protected void onDestroy() {
-        db_helper.close();
+        dbHelper.close();
         super.onDestroy();
     }
 }
