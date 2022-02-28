@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import com.myapp.pa2.BookReaderContract.BookEntry;
 import com.myapp.pa2.model.Book;
@@ -14,7 +13,7 @@ import java.util.ArrayList;
 
 
 public class BookSQLiteHelper extends SQLiteOpenHelper {
-    private static BookSQLiteHelper db_instance;
+    private static BookSQLiteHelper dbInstance;
 
     public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "book.db";
@@ -29,10 +28,10 @@ public class BookSQLiteHelper extends SQLiteOpenHelper {
             "DROP TABLE IF EXISTS " + BookEntry.TABLE_NAME;
 
     public static synchronized BookSQLiteHelper getInstance(Context context) {
-        if (db_instance == null) {
-            db_instance = new BookSQLiteHelper(context.getApplicationContext());
+        if (dbInstance == null) {
+            dbInstance = new BookSQLiteHelper(context.getApplicationContext());
         }
-        return db_instance;
+        return dbInstance;
     }
 
     private BookSQLiteHelper(Context context) {
@@ -51,11 +50,11 @@ public class BookSQLiteHelper extends SQLiteOpenHelper {
 
     public void addBook(Book book) {
         SQLiteDatabase db = getWritableDatabase();
-        ContentValues book_values = new ContentValues();
-        book_values.put(BookEntry.COLUMN_NAME_TITLE, book.getTitle());
-        book_values.put(BookEntry.COLUMN_NAME_AUTHOR, book.getAuthor());
+        ContentValues bookValues = new ContentValues();
+        bookValues.put(BookEntry.COLUMN_NAME_TITLE, book.getTitle());
+        bookValues.put(BookEntry.COLUMN_NAME_AUTHOR, book.getAuthor());
 
-        db.insert(BookEntry.TABLE_NAME, null, book_values);
+        db.insert(BookEntry.TABLE_NAME, null, bookValues);
     }
 
     public Book searchBook(int id) {
@@ -109,12 +108,12 @@ public class BookSQLiteHelper extends SQLiteOpenHelper {
 
     public void updateBook(Book book) {
         SQLiteDatabase db = getWritableDatabase();
-        ContentValues new_values = new ContentValues();
+        ContentValues newValues = new ContentValues();
 
-        new_values.put(BookEntry.COLUMN_NAME_TITLE, book.getTitle());
-        new_values.put(BookEntry.COLUMN_NAME_AUTHOR, book.getAuthor());
+        newValues.put(BookEntry.COLUMN_NAME_TITLE, book.getTitle());
+        newValues.put(BookEntry.COLUMN_NAME_AUTHOR, book.getAuthor());
         String selection = "_id = " + book.getId();
-        db.update(BookEntry.TABLE_NAME, new_values, selection, null);
+        db.update(BookEntry.TABLE_NAME, newValues, selection, null);
     }
 
     public void deleteBook(Book book) {

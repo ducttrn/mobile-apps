@@ -10,7 +10,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.myapp.pa2.model.Book;
 
@@ -22,11 +21,11 @@ public class MainActivity extends AppCompatActivity implements BookAdapter.OnIte
 
     RecyclerView recyclerView;
     private ArrayList<Book> bookList;
-    BookSQLiteHelper bookSQLiteHelper;
+    BookSQLiteHelper db_helper;
     BookAdapter bookAdapter;
 
     private void loadData() {
-        bookList = bookSQLiteHelper.getAllBooks();
+        bookList = db_helper.getAllBooks();
 
         bookAdapter = new BookAdapter(bookList, this);
         recyclerView.setAdapter(bookAdapter);
@@ -38,7 +37,8 @@ public class MainActivity extends AppCompatActivity implements BookAdapter.OnIte
         setContentView(R.layout.activity_main);
 
         // Init DB instance
-        bookSQLiteHelper = BookSQLiteHelper.getInstance(this);
+        db_helper = BookSQLiteHelper.getInstance(this);
+        db_helper.onUpgrade(db_helper.getWritableDatabase(), 1, 2);
         initDatabase();
 
         recyclerView = findViewById(R.id.book_list);
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements BookAdapter.OnIte
         bookListSample.add(new Book("The Girl with the Dragon Tattoo", "Stieg Larsson"));
 
         for (Book book : bookListSample) {
-            bookSQLiteHelper.addBook(book);
+            db_helper.addBook(book);
         }
 
     }

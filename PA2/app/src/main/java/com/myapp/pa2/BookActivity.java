@@ -13,7 +13,7 @@ import com.myapp.pa2.model.Book;
 
 public class BookActivity extends AppCompatActivity {
     private static final int DEFAULT_VALUE = 1;
-    private final BookSQLiteHelper db_instance = BookSQLiteHelper.getInstance(this);
+    private final BookSQLiteHelper dbInstance = BookSQLiteHelper.getInstance(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,23 +21,23 @@ public class BookActivity extends AppCompatActivity {
         setContentView(R.layout.activity_book);
 
         Intent intent = getIntent();
-        int book_id = intent.getIntExtra("bookId", DEFAULT_VALUE);
-        Book book = db_instance.searchBook(book_id);
+        int bookID = intent.getIntExtra("bookID", DEFAULT_VALUE);
+        Book book = dbInstance.searchBook(bookID);
 
         if (book != null) {
-            TextView title_view = findViewById(R.id.title_display);
-            String book_title = book.getTitle();
-            title_view.setText(getString(R.string.title_display, book_title));
+            TextView titleView = findViewById(R.id.title_display);
+            String bookTitle = book.getTitle();
+            titleView.setText(getString(R.string.title_display, bookTitle));
 
-            EditText title_input_box = findViewById(R.id.title_input_box);
-            title_input_box.setHint(book_title);
+            EditText titleInputBox = findViewById(R.id.title_input_box);
+            titleInputBox.setHint(bookTitle);
 
-            TextView author_view = findViewById(R.id.author_display);
-            String book_author = book.getAuthor();
-            author_view.setText(getString(R.string.author_display, book_author));
+            TextView authorView = findViewById(R.id.author_display);
+            String bookAuthor = book.getAuthor();
+            authorView.setText(getString(R.string.author_display, bookAuthor));
 
-            EditText author_input_box = findViewById(R.id.author_input_box);
-            author_input_box.setHint(book_author);
+            EditText authorInputBox = findViewById(R.id.author_input_box);
+            authorInputBox.setHint(bookAuthor);
         }
         else {
             this.finish();
@@ -48,27 +48,25 @@ public class BookActivity extends AppCompatActivity {
     }
 
     private void initDeleteButton(Book book) {
-        Button delete_button = findViewById(R.id.delete_button);
-        delete_button.setOnClickListener(view -> {
-            db_instance.deleteBook(book);
-
+        Button deleteButton = findViewById(R.id.delete_button);
+        deleteButton.setOnClickListener(view -> {
+            dbInstance.deleteBook(book);
             returnMainActivity();
         });
     }
 
     private void initUpdateButton(Book book) {
-        Button update_button = findViewById(R.id.update_botton);
-        update_button.setOnClickListener(view -> {
-            EditText title_input_box = findViewById(R.id.title_input_box);
-            String new_title = title_input_box.getText().toString();
-            book.setTitle(new_title);
+        Button updateButton = findViewById(R.id.update_button);
+        updateButton.setOnClickListener(view -> {
+            EditText titleInputBox = findViewById(R.id.title_input_box);
+            String newTitle = titleInputBox.getText().toString();
+            book.setTitle(newTitle);
 
-            EditText author_input_box = findViewById(R.id.author_input_box);
-            String new_author = author_input_box.getText().toString();
-            book.setAuthor(new_author);
+            EditText authorInputBox = findViewById(R.id.author_input_box);
+            String newAuthor = authorInputBox.getText().toString();
+            book.setAuthor(newAuthor);
 
-            db_instance.updateBook(book);
-
+            dbInstance.updateBook(book);
             returnMainActivity();
         });
     }
