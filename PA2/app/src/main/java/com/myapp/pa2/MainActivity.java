@@ -108,4 +108,10 @@ public class MainActivity extends AppCompatActivity implements BookAdapter.OnIte
             }
         }
     }
+
+    @Override
+    protected void onDestroy() {
+        db_helper.close();
+        super.onDestroy();
+    }
 }
