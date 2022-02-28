@@ -87,6 +87,7 @@ public class BookSQLiteHelper extends SQLiteOpenHelper {
         bookValues.put(BookEntry.COLUMN_NAME_AUTHOR, book.getAuthor());
 
         db.insert(BookEntry.TABLE_NAME, null, bookValues);
+        db.close();
     }
 
     // Search for a book by ID
@@ -112,6 +113,7 @@ public class BookSQLiteHelper extends SQLiteOpenHelper {
         } finally {
             cursor.close();
         }
+        db.close();
         return book;
     }
 
@@ -136,6 +138,7 @@ public class BookSQLiteHelper extends SQLiteOpenHelper {
         } finally {
             cursor.close();
         }
+        db.close();
         return books;
     }
 
@@ -148,6 +151,7 @@ public class BookSQLiteHelper extends SQLiteOpenHelper {
         newValues.put(BookEntry.COLUMN_NAME_AUTHOR, book.getAuthor());
         String selection = "_id = " + book.getId();
         db.update(BookEntry.TABLE_NAME, newValues, selection, null);
+        db.close();
     }
 
     // Delete a book using Book entity
@@ -155,5 +159,6 @@ public class BookSQLiteHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         String selection = "_id = " + book.getId();
         db.delete(BookEntry.TABLE_NAME, selection, null);
+        db.close();
     }
 }
