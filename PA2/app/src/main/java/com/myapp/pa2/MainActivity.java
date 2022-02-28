@@ -6,22 +6,30 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.myapp.pa2.model.Book;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements BookAdapter.OnItemClickedListener {
+
+    int LAUNCH_BOOK_ACTIVITY = 1;
 
     RecyclerView recyclerView;
     private ArrayList<Book> bookList;
+    BookSQLiteHelper bookSQLiteHelper;
+    BookAdapter bookAdapter;
 
     private void loadData() {
-        bookList = new ArrayList<>();
+        bookList = bookSQLiteHelper.getAllBooks();
 
-        addSampleData();
+        bookAdapter = new BookAdapter(bookList, this);
+        recyclerView.setAdapter(bookAdapter);
     }
 
     @Override
@@ -29,24 +37,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Init DB instance
+        bookSQLiteHelper = BookSQLiteHelper.getInstance(this);
+        initDatabase();
+
         recyclerView = findViewById(R.id.book_list);
+
         loadData();
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(new BookAdapter(this, bookList));
 
-        DividerItemDecoration verticalDecoration = new DividerItemDecoration(
-                recyclerView.getContext(),
-                DividerItemDecoration.HORIZONTAL
-        );
-        Drawable verticalDivider = ContextCompat.getDrawable(
-                MainActivity.this,
-                R.drawable.vertical_divider
-        );
-        verticalDecoration.setDrawable(verticalDivider);
-        recyclerView.addItemDecoration(verticalDecoration);
 
+        // Add horizontal + vertical dividers for each book row
+        addDividers();
+    }
+
+    private void addDividers() {
         DividerItemDecoration horizontalDecoration = new DividerItemDecoration(
                 recyclerView.getContext(),
                 DividerItemDecoration.VERTICAL
@@ -59,15 +66,46 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.addItemDecoration(horizontalDecoration);
     }
 
-    private void addSampleData() {
-        bookList.add(new Book(1,"Harry Potter and the Goblet of Fire", "JK Rowling"));
-        bookList.add(new Book(2,"The Hobbit", "J R R Tolkien"));
-        bookList.add(new Book(3,"The Da Vinci Code", "Dan Brown"));
-        bookList.add(new Book(3,"Harry Potter and the Prisoner of Azkaban", "JK Rowling"));
-        bookList.add(new Book(4,"The Official Highway Code", "Department for Transport"));
-        bookList.add(new Book(5,"The Lion, The Witch and The Wardrobe", "CS Lewis"));
-        bookList.add(new Book(6,"Fifty Shades of Grey", "E L James"));
-        bookList.add(new Book(7,"To Kill a Mockingbird", "Harper Lee"));
-        bookList.add(new Book(8,"Lord of the Rings: Return of the King", "J R R Tolkien"));
+    private void initDatabase() {
+        ArrayList<Book> bookListSample = new ArrayList<>();
+
+        bookListSample.add(new Book("Harry Potter and the Goblet of Fire", "JK Rowling"));
+        bookListSample.add(new Book("The Hobbit", "J R R Tolkien"));
+        bookListSample.add(new Book("The Da Vinci Code", "Dan Brown"));
+        bookListSample.add(new Book("Harry Potter and the Prisoner of Azkaban", "JK Rowling"));
+        bookListSample.add(new Book("The Official Highway Code", "Department for Transport"));
+        bookListSample.add(new Book("The Lion, The Witch and The Wardrobe", "CS Lewis"));
+        bookListSample.add(new Book("Fifty Shades of Grey", "E L James"));
+        bookListSample.add(new Book("To Kill a Mockingbird", "Harper Lee"));
+        bookListSample.add(new Book("Lord of the Rings: Return of the King", "J R R Tolkien"));
+        bookListSample.add(new Book("Jamie’s 15 minute meals", "Jamie Oliver"));
+        bookListSample.add(new Book("The BFG", "Roald Dahl"));
+        bookListSample.add(new Book("Great Expectations", "Charles Dickens"));
+        bookListSample.add(new Book("Animal Farm", "George Orwell"));
+        bookListSample.add(new Book("1984", "George Orwell"));
+        bookListSample.add(new Book("The Girl with the Dragon Tattoo", "Stieg Larsson"));
+
+        for (Book book : bookListSample) {
+            bookSQLiteHelper.addBook(book);
+        }
+
+    }
+
+    @Override
+    public void onBookClick(int position) {
+
+        Intent intent = new Intent(this, BookActivity.class);
+        intent.putExtra("bookID", bookList.get(position).getId());
+        startActivityForResult(intent, LAUNCH_BOOK_ACTIVITY);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == LAUNCH_BOOK_ACTIVITY) {
+            if(resultCode == Activity.RESULT_OK){
+                loadData();
+            }
+        }
     }
 }

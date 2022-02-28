@@ -2,6 +2,7 @@ package com.myapp.pa2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -50,6 +51,8 @@ public class BookActivity extends AppCompatActivity {
         Button delete_button = findViewById(R.id.delete_button);
         delete_button.setOnClickListener(view -> {
             db_instance.deleteBook(book);
+
+            returnMainActivity();
         });
     }
 
@@ -65,6 +68,18 @@ public class BookActivity extends AppCompatActivity {
             book.setAuthor(new_author);
 
             db_instance.updateBook(book);
+
+            returnMainActivity();
         });
+    }
+
+    // TODO: return something to MainActivity?
+    private void returnMainActivity() {
+        // Return to the MainActivity
+        Intent returnMainIntent = new Intent();
+
+        //returnMainIntent.putExtra("result",result);
+        setResult(Activity.RESULT_OK, returnMainIntent);
+        finish();
     }
 }

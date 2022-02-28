@@ -15,19 +15,19 @@ import java.util.ArrayList;
 
 public class BookAdapter extends RecyclerView.Adapter<BookViewHolder> {
 
-    private Context context;
     private ArrayList<Book> bookList;
+    private OnItemClickedListener onItemClickedListener;
 
-    public BookAdapter(Context context, ArrayList<Book> bookList) {
-        this.context = context;
+    public BookAdapter(ArrayList<Book> bookList, OnItemClickedListener onItemClickedListener) {
         this.bookList = bookList;
+        this.onItemClickedListener = onItemClickedListener;
     }
 
     @NonNull
     @Override
     public BookViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.row_book, parent, false);
-        return new BookViewHolder(view);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_book, parent, false);
+        return new BookViewHolder(view, onItemClickedListener);
     }
 
     @Override
@@ -39,5 +39,12 @@ public class BookAdapter extends RecyclerView.Adapter<BookViewHolder> {
     public void onBindViewHolder(@NonNull BookViewHolder bookViewHolder, int position) {
         Book book = bookList.get(position);
         bookViewHolder.setBookName(book.getTitle());
+    }
+
+    /**
+     *  Interface for listener when clicking each book item
+     */
+    public interface OnItemClickedListener{
+        void onBookClick(int position);
     }
 }
