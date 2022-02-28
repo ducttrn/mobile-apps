@@ -13,6 +13,7 @@ import com.myapp.pa2.model.Book;
 
 public class BookActivity extends AppCompatActivity {
     private static final int DEFAULT_VALUE = 1;
+    // Instance variable to interact with SQLite database
     private final BookSQLiteHelper dbInstance = BookSQLiteHelper.getInstance(this);
 
     @Override
@@ -20,11 +21,13 @@ public class BookActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book);
 
+        // Query database based on book ID
         Intent intent = getIntent();
         int bookID = intent.getIntExtra("bookID", DEFAULT_VALUE);
         Book book = dbInstance.searchBook(bookID);
 
         if (book != null) {
+            // Set TextViews based on query result
             TextView titleView = findViewById(R.id.title_display);
             String bookTitle = book.getTitle();
             titleView.setText(getString(R.string.title_display, bookTitle));
@@ -50,6 +53,7 @@ public class BookActivity extends AppCompatActivity {
     private void initDeleteButton(Book book) {
         Button deleteButton = findViewById(R.id.delete_button);
         deleteButton.setOnClickListener(view -> {
+            // Delete book then return to the MainActivity
             dbInstance.deleteBook(book);
             returnMainActivity();
         });
@@ -58,6 +62,7 @@ public class BookActivity extends AppCompatActivity {
     private void initUpdateButton(Book book) {
         Button updateButton = findViewById(R.id.update_button);
         updateButton.setOnClickListener(view -> {
+            // Update book based on user inputs
             EditText titleInputBox = findViewById(R.id.title_input_box);
             String newTitle = titleInputBox.getText().toString();
             book.setTitle(newTitle);
@@ -71,12 +76,9 @@ public class BookActivity extends AppCompatActivity {
         });
     }
 
-    // TODO: return something to MainActivity?
     private void returnMainActivity() {
         // Return to the MainActivity
         Intent returnMainIntent = new Intent();
-
-        //returnMainIntent.putExtra("result",result);
         setResult(Activity.RESULT_OK, returnMainIntent);
         finish();
     }

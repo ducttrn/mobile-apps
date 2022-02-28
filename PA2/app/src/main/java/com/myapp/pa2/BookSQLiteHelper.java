@@ -18,15 +18,22 @@ public class BookSQLiteHelper extends SQLiteOpenHelper {
     public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "book.db";
 
+    // Query to create tables
     private static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + BookEntry.TABLE_NAME + " (" +
                     BookEntry._ID + " INTEGER PRIMARY KEY," +
                     BookEntry.COLUMN_NAME_TITLE + " TEXT," +
                     BookEntry.COLUMN_NAME_AUTHOR + " TEXT)";
 
+    // Query to delete all tables
     private static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + BookEntry.TABLE_NAME;
 
+    /**
+     * Use Singleton pattern to make sure
+     * only one database instance exists at one time
+     * and can be shared among activities
+     */
     public static synchronized BookSQLiteHelper getInstance(Context context) {
         if (dbInstance == null) {
             dbInstance = new BookSQLiteHelper(context.getApplicationContext());
@@ -34,6 +41,7 @@ public class BookSQLiteHelper extends SQLiteOpenHelper {
         return dbInstance;
     }
 
+    // Private constructor to avoid calling directly (use getInstance() instead)
     private BookSQLiteHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -50,6 +58,7 @@ public class BookSQLiteHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    // Add sample data when first creating database
     private void initDatabase() {
         ArrayList<Book> bookListSample = new ArrayList<>();
 
@@ -70,6 +79,7 @@ public class BookSQLiteHelper extends SQLiteOpenHelper {
 
     }
 
+    // Add a book using Book entity
     public void addBook(Book book) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues bookValues = new ContentValues();
@@ -79,6 +89,7 @@ public class BookSQLiteHelper extends SQLiteOpenHelper {
         db.insert(BookEntry.TABLE_NAME, null, bookValues);
     }
 
+    // Search for a book by ID
     public Book searchBook(int id) {
         SQLiteDatabase db = getReadableDatabase();
         String selection = BookEntry._ID + " = " + id;
@@ -128,6 +139,7 @@ public class BookSQLiteHelper extends SQLiteOpenHelper {
         return books;
     }
 
+    // Update a book using Book entity
     public void updateBook(Book book) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues newValues = new ContentValues();
@@ -138,6 +150,7 @@ public class BookSQLiteHelper extends SQLiteOpenHelper {
         db.update(BookEntry.TABLE_NAME, newValues, selection, null);
     }
 
+    // Delete a book using Book entity
     public void deleteBook(Book book) {
         SQLiteDatabase db = getWritableDatabase();
         String selection = "_id = " + book.getId();

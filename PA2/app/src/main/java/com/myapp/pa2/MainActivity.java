@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity implements BookAdapter.OnIte
 
     private void loadData() {
         bookList = dbHelper.getAllBooks();
-
         bookAdapter = new BookAdapter(bookList, this);
         recyclerView.setAdapter(bookAdapter);
     }
@@ -61,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements BookAdapter.OnIte
 
     @Override
     public void onBookClick(int position) {
-
+        // Launch BookActivity when a book is clicked
         Intent intent = new Intent(this, BookActivity.class);
         intent.putExtra("bookID", bookList.get(position).getId());
         startActivityForResult(intent, LAUNCH_BOOK_ACTIVITY);
@@ -79,6 +78,7 @@ public class MainActivity extends AppCompatActivity implements BookAdapter.OnIte
 
     @Override
     protected void onDestroy() {
+        // Close database connection when the app is destroyed
         dbHelper.close();
         super.onDestroy();
     }
