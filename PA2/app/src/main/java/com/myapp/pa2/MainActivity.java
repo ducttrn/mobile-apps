@@ -69,21 +69,16 @@ public class MainActivity extends AppCompatActivity implements BookAdapter.OnIte
     private void initDatabase() {
         ArrayList<Book> bookListSample = new ArrayList<>();
 
-        bookListSample.add(new Book("Harry Potter and the Goblet of Fire", "JK Rowling"));
         bookListSample.add(new Book("The Hobbit", "J R R Tolkien"));
         bookListSample.add(new Book("The Da Vinci Code", "Dan Brown"));
-        bookListSample.add(new Book("Harry Potter and the Prisoner of Azkaban", "JK Rowling"));
         bookListSample.add(new Book("The Official Highway Code", "Department for Transport"));
-        bookListSample.add(new Book("The Lion, The Witch and The Wardrobe", "CS Lewis"));
         bookListSample.add(new Book("Fifty Shades of Grey", "E L James"));
         bookListSample.add(new Book("To Kill a Mockingbird", "Harper Lee"));
-        bookListSample.add(new Book("Lord of the Rings: Return of the King", "J R R Tolkien"));
         bookListSample.add(new Book("Jamie’s 15 minute meals", "Jamie Oliver"));
         bookListSample.add(new Book("The BFG", "Roald Dahl"));
         bookListSample.add(new Book("Great Expectations", "Charles Dickens"));
         bookListSample.add(new Book("Animal Farm", "George Orwell"));
         bookListSample.add(new Book("1984", "George Orwell"));
-        bookListSample.add(new Book("The Girl with the Dragon Tattoo", "Stieg Larsson"));
 
         for (Book book : bookListSample) {
             dbHelper.addBook(book);

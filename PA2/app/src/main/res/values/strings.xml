@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">PA2</string>
+    <string name="app_name">BookShelf</string>
     <string name="pride_and_prejudice">Pride and Prejudice</string>
     <string name="jane_austen">Jane Austen</string>
     <string name="delete_book">Delete Book</string>
