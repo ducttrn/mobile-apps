@@ -13,6 +13,8 @@ import java.util.ArrayList;
 
 
 public class BookSQLiteHelper extends SQLiteOpenHelper {
+    private static BookSQLiteHelper db_instance;
+
     public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "book.db";
 
@@ -25,7 +27,14 @@ public class BookSQLiteHelper extends SQLiteOpenHelper {
     private static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + BookEntry.TABLE_NAME;
 
-    public BookSQLiteHelper(Context context) {
+    public static synchronized BookSQLiteHelper getInstance(Context context) {
+        if (db_instance == null) {
+            db_instance = new BookSQLiteHelper(context.getApplicationContext());
+        }
+        return db_instance;
+    }
+
+    private BookSQLiteHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
