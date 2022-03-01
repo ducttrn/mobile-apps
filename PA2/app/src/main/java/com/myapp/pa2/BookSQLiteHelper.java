@@ -49,8 +49,7 @@ public class BookSQLiteHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SQL_CREATE_ENTRIES);
-        initDatabase();
-
+        initDatabase(db);
     }
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -59,7 +58,7 @@ public class BookSQLiteHelper extends SQLiteOpenHelper {
     }
 
     // Add sample data when first creating database
-    private void initDatabase() {
+    protected void initDatabase(SQLiteDatabase db) {
         ArrayList<Book> bookListSample = new ArrayList<>();
 
         bookListSample.add(new Book("The Hobbit", "J R R Tolkien"));
@@ -74,19 +73,23 @@ public class BookSQLiteHelper extends SQLiteOpenHelper {
         bookListSample.add(new Book("1984", "George Orwell"));
 
         for (Book book : bookListSample) {
-            dbInstance.addBook(book);
+            insertBookDB(db, book);
         }
-
     }
 
-    // Add a book using Book entity
-    public void addBook(Book book) {
-        SQLiteDatabase db = getWritableDatabase();
+    private void insertBookDB(SQLiteDatabase db, Book book) {
         ContentValues bookValues = new ContentValues();
         bookValues.put(BookEntry.COLUMN_NAME_TITLE, book.getTitle());
         bookValues.put(BookEntry.COLUMN_NAME_AUTHOR, book.getAuthor());
 
         db.insert(BookEntry.TABLE_NAME, null, bookValues);
+    }
+
+    // Add a book using Book entity
+    public void addBook(Book book) {
+        SQLiteDatabase db = getWritableDatabase();
+        insertBookDB(db, book);
+
         db.close();
     }
 
