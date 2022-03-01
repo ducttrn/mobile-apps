@@ -6,7 +6,7 @@
     <string name="update_book">Update book</string>
     <string name="title_display">Title: %1$s</string>
     <string name="author_display">Author: %1$s</string>
-    <string name="add_book">Add Book</string>
+    <string name="add_book">Save Book</string>
     <string name="sample_author">John Doe</string>
     <string name="sample_book_title">A Sample Book</string>
 </resources>
