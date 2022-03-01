@@ -10,7 +10,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.View;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.myapp.pa2.model.Book;
 
 import java.util.ArrayList;
@@ -18,6 +20,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements BookAdapter.OnItemClickedListener {
 
     int LAUNCH_BOOK_ACTIVITY = 1;
+    int LAUNCH_NEW_BOOK_ACTIVITY = 2;
 
     RecyclerView recyclerView;
     private ArrayList<Book> bookList;
@@ -43,6 +46,14 @@ public class MainActivity extends AppCompatActivity implements BookAdapter.OnIte
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
         addDividers();
+
+        FloatingActionButton addBookFloatingButton = findViewById(R.id.fab);
+        addBookFloatingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onAddBookClick();
+            }
+        });
     }
 
     private void addDividers() {
@@ -66,6 +77,11 @@ public class MainActivity extends AppCompatActivity implements BookAdapter.OnIte
         startActivityForResult(intent, LAUNCH_BOOK_ACTIVITY);
     }
 
+    public void onAddBookClick() {
+        Intent intent = new Intent(this, NewBookActivity.class);
+        startActivityForResult(intent, LAUNCH_NEW_BOOK_ACTIVITY);
+    }
+
     /**
      *  Refresh the Book List on return from BookActivity
      * @param requestCode
@@ -75,7 +91,8 @@ public class MainActivity extends AppCompatActivity implements BookAdapter.OnIte
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == LAUNCH_BOOK_ACTIVITY) {
+        if (requestCode == LAUNCH_BOOK_ACTIVITY ||
+            requestCode == LAUNCH_NEW_BOOK_ACTIVITY) {
             if(resultCode == Activity.RESULT_OK){
                 loadData();
             }
