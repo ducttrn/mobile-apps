@@ -17,8 +17,9 @@ public class NewBookActivity extends AppCompatActivity {
     private final BookSQLiteHelper dbInstance = BookSQLiteHelper.getInstance(this);
     Button addButton;
 
-    String DEFAULT_BOOK_TITLE = "Sample Book";
-    String DEFAULT_BOOK_AUTHOR = "John Doe";
+    // Default Book info
+    private String DEFAULT_BOOK_TITLE = "Sample Book";
+    private String DEFAULT_BOOK_AUTHOR = "John Doe";
 
 
     @Override
@@ -36,6 +37,9 @@ public class NewBookActivity extends AppCompatActivity {
         initAddButton();
     }
 
+    /**
+     *  Handler function for "Add Book" button
+     */
     private void initAddButton() {
         addButton = findViewById(R.id.add_button);
         addButton.setOnClickListener(view -> {
@@ -51,14 +55,20 @@ public class NewBookActivity extends AppCompatActivity {
 
             dbInstance.addBook(newBook);
 
+            // Notify user that book added successfully
             Toast.makeText(getApplicationContext(), "Book Added Successfully",Toast.LENGTH_SHORT).show();
             returnMainActivity();
         });
     }
 
+    /**
+     *  Returning to MainActivity
+     */
     private void returnMainActivity() {
         // Return to the MainActivity
         Intent returnMainIntent = new Intent();
+
+        // Adding action completed, sending success code
         setResult(Activity.RESULT_OK, returnMainIntent);
         finish();
     }

@@ -1,6 +1,5 @@
 package com.myapp.pa2;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +22,13 @@ public class BookAdapter extends RecyclerView.Adapter<BookViewHolder> {
         this.onItemClickedListener = onItemClickedListener;
     }
 
+    /**
+     *  Creating a Holder/Container View for each book
+     *
+     * @param parent
+     * @param viewType
+     * @return
+     */
     @NonNull
     @Override
     public BookViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -35,9 +41,16 @@ public class BookAdapter extends RecyclerView.Adapter<BookViewHolder> {
         return bookList == null ? 0 : bookList.size();
     }
 
+    /**
+     * The info to be displayed on each row of book
+     *
+     * @param bookViewHolder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(@NonNull BookViewHolder bookViewHolder, int position) {
         Book book = bookList.get(position);
+        // Display book title
         bookViewHolder.setBookName(book.getTitle());
     }
 

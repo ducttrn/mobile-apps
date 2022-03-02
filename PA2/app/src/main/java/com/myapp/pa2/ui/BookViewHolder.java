@@ -14,6 +14,12 @@ public class BookViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     private TextView bookNameTextView;
     OnItemClickedListener onItemClickedListener;
 
+    /**
+     *  Container/Holder for each row of Book
+     *
+     * @param itemView
+     * @param onItemClickedListener
+     */
     public BookViewHolder(@NonNull View itemView, OnItemClickedListener onItemClickedListener) {
         super(itemView);
         this.bookNameTextView = itemView.findViewById(R.id.book_name);
@@ -25,6 +31,10 @@ public class BookViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         this.bookNameTextView.setText(bookName);
     }
 
+    /**
+     * Handler for click action on each row of the book
+     * @param view
+     */
     @Override
     public void onClick(View view) {
         onItemClickedListener.onBookClick(getAdapterPosition());
