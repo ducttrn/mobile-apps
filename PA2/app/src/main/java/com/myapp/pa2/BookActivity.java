@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.myapp.pa2.model.Book;
 
@@ -55,6 +56,7 @@ public class BookActivity extends AppCompatActivity {
         deleteButton.setOnClickListener(view -> {
             // Delete book then return to the MainActivity
             dbInstance.deleteBook(book);
+            Toast.makeText(getApplicationContext(), "Book Deleted Successfully",Toast.LENGTH_SHORT).show();
             returnMainActivity();
         });
     }
@@ -72,6 +74,8 @@ public class BookActivity extends AppCompatActivity {
             book.setAuthor(newAuthor);
 
             dbInstance.updateBook(book);
+
+            Toast.makeText(getApplicationContext(), "Book Updated Successfully",Toast.LENGTH_SHORT).show();
             returnMainActivity();
         });
     }

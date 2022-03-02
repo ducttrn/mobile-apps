@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.myapp.pa2.model.Book;
 
@@ -50,6 +51,7 @@ public class NewBookActivity extends AppCompatActivity {
 
             dbInstance.addBook(newBook);
 
+            Toast.makeText(getApplicationContext(), "Book Added Successfully",Toast.LENGTH_SHORT).show();
             returnMainActivity();
         });
     }
