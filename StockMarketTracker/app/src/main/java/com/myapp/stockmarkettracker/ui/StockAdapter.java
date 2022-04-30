@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+import com.myapp.stockmarkettracker.R;
 import com.myapp.stockmarkettracker.Stock;
 
 public class StockAdapter extends RecyclerView.Adapter<StockViewHolder> {

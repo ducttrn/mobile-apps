@@ -6,6 +6,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.myapp.stockmarkettracker.R;
+
 import com.myapp.stockmarkettracker.ui.StockAdapter.OnItemClickedListener;
 
 public class StockViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
