@@ -57,7 +57,7 @@ public class BookSQLiteHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    // Add sample data when first creating database
+    // Add sample data when first creating database 
     protected void initDatabase(SQLiteDatabase db) {
         ArrayList<Book> bookListSample = new ArrayList<>();
 

@@ -17,10 +17,6 @@ public class NewBookActivity extends AppCompatActivity {
     private final BookSQLiteHelper dbInstance = BookSQLiteHelper.getInstance(this);
     Button addButton;
 
-    // Default Book info
-    private String DEFAULT_BOOK_TITLE = "Sample Book";
-    private String DEFAULT_BOOK_AUTHOR = "John Doe";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +24,12 @@ public class NewBookActivity extends AppCompatActivity {
         setContentView(R.layout.activity_new_book);
 
         EditText titleInputBox = findViewById(R.id.new_title_input_box);
+        // Default Book info
+        String DEFAULT_BOOK_TITLE = "Sample Book";
         titleInputBox.setText(DEFAULT_BOOK_TITLE);
 
         EditText authorInputBox = findViewById(R.id.new_author_input_box);
+        String DEFAULT_BOOK_AUTHOR = "John Doe";
         authorInputBox.setText(DEFAULT_BOOK_AUTHOR);
 
         // Adding new book
