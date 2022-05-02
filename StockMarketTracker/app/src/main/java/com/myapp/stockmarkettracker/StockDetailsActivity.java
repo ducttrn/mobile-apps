@@ -41,19 +41,23 @@ public class StockDetailsActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         // Handle action when "Add Stock" is clicked
-        switch (id) {
-            case R.id.exit_option: returnMainActivity();
-            case R.id.delete_stock_option:
-                Stock stock =  dbInstance.searchStock(symbol);
-                if (stock != null){
-                    dbInstance.deleteStock(stock);
-                }
-                returnMainActivity();
-            case R.id.refresh_data_option: updateStockData();
-            case R.id.visit_stock_page_option:
-                Intent intent = new Intent(this, StockPageActivity.class);
-                intent.putExtra("symbol", symbol);
-                startActivityForResult(intent, LAUNCH_STOCK_PAGE_ACTIVITY);
+        if (id == R.id.refresh_data_option){
+            updateStockData();
+        }
+        else if (id == R.id.visit_stock_page_option){
+            Intent intent = new Intent(this, StockPageActivity.class);
+            intent.putExtra("symbol", symbol);
+            startActivityForResult(intent, LAUNCH_STOCK_PAGE_ACTIVITY);
+        }
+        else if (id == R.id.delete_stock_option) {
+            Stock stock = dbInstance.searchStock(symbol);
+            if (stock != null) {
+                dbInstance.deleteStock(stock);
+            }
+            returnMainActivity();
+        }
+        else {
+            returnMainActivity();
         }
 
         return super.onOptionsItemSelected(item);
