@@ -10,7 +10,6 @@ import android.view.MenuItem;
 import android.webkit.WebView;
 
 public class StockPageActivity extends AppCompatActivity {
-    private final String baseURL = "https://www.marketwatch.com/investing/stock/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +19,7 @@ public class StockPageActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String symbol = intent.getStringExtra("symbol");
+        String baseURL = "https://www.marketwatch.com/investing/stock/";
         browser.loadUrl(baseURL + symbol);
     }
 
@@ -39,21 +39,20 @@ public class StockPageActivity extends AppCompatActivity {
 
         // Handle action when "Add Stock" is clicked
         if (id == R.id.exit_option_stock_page) {
-            returnMainActivity();
+            returnPreviousActivity();
         }
         return super.onOptionsItemSelected(item);
     }
 
     /**
-     *  Returning to MainActivity
+     *  Returning to Previous Activity
      */
-    private void returnMainActivity() {
-        // Return to the MainActivity
-        Intent returnMainIntent = new Intent();
+    private void returnPreviousActivity() {
+        // Return to the previous activity
+        Intent returnPreviousActivity = new Intent();
 
         // Adding action completed, sending success code
-        setResult(Activity.RESULT_OK, returnMainIntent);
+        setResult(Activity.RESULT_OK, returnPreviousActivity);
         finish();
     }
-
 }

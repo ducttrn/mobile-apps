@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class NewStockActivity extends AppCompatActivity {
 
     // Instance variable to interact with SQLite database
-    //private final StockSQLiteHelper dbInstance = StockSQLiteHelper.getInstance(this);
+    // private final StockSQLiteHelper dbInstance = StockSQLiteHelper.getInstance(this);
     Button addButton;
     private final StockSQLiteHelper dbInstance = StockSQLiteHelper.getInstance(this);
 
