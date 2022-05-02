@@ -21,14 +21,8 @@ public class NewStockActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_stock);
 
-        EditText companyNameInputBox = findViewById(R.id.new_company_name_input_box);
-
-        // Default Stock info
-        String DEFAULT_STOCK_COMPANY_NAME = "Sample Company";
-        companyNameInputBox.setText(DEFAULT_STOCK_COMPANY_NAME);
-
         EditText symbolInputBox = findViewById(R.id.new_stock_symbol_input_box);
-        String DEFAULT_STOCK_SYMBOL = "CCC";
+        String DEFAULT_STOCK_SYMBOL = "SYM";
         symbolInputBox.setText(DEFAULT_STOCK_SYMBOL);
 
         initAddButton();
@@ -41,9 +35,6 @@ public class NewStockActivity extends AppCompatActivity {
         addButton = findViewById(R.id.add_button);
         addButton.setOnClickListener(view -> {
             Stock newStock;
-
-            EditText companyNameInputBox = findViewById(R.id.new_company_name_input_box);
-            String newStockCompanyName = companyNameInputBox.getText().toString();
 
             EditText symbolInputBox = findViewById(R.id.new_stock_symbol_input_box);
             String newStockSymbol = symbolInputBox.getText().toString();
@@ -58,10 +49,8 @@ public class NewStockActivity extends AppCompatActivity {
                 newStock = null;
             }
 
-            // Stock Symbol not found
-            // TODO: Notify user when unable to add Stock
             if (newStock == null) {
-                Toast.makeText(getBaseContext(), "Failed to Add Stock",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(), "Invalid Stock Symbol",Toast.LENGTH_SHORT).show();
             } else {
                 dbInstance.insertStock(newStock);
 
