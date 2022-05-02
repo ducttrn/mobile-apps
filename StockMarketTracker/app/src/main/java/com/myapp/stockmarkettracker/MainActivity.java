@@ -40,16 +40,6 @@ public class MainActivity extends AppCompatActivity implements StockAdapter.OnIt
     private void loadData() {
         stockList = dbHelper.getAllStocks();
 
-        // TODO: remove Dummy Data
-//        ArrayList<Stock> stockList = new ArrayList<>();
-//
-//        stockList.add(new Stock("ABC", "Com ABC",
-//                90.4, -10.2, 20));
-//        stockList.add(new Stock("GHF", "Com ABC",
-//                90.4, -10.2, 20));
-//        stockList.add(new Stock("UJK", "Com ABC",
-//                90.4, -10.2, 20));
-
         stockAdapter = new StockAdapter(stockList, this);
         recyclerView.setAdapter(stockAdapter);
     }
