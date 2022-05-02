@@ -1,0 +1,25 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.testapp.MainActivity">
+    <item
+        android:id="@+id/refresh_data_option"
+        android:orderInCategory="100"
+        android:title="@string/refresh_data"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/visit_stock_page_option"
+        android:orderInCategory="100"
+        android:title="@string/visit_stock_page"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/delete_stock_option"
+        android:orderInCategory="100"
+        android:title="@string/delete_stock"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/exit_option"
+        android:orderInCategory="100"
+        android:title="@string/exit"
+        app:showAsAction="never" />
+</menu>

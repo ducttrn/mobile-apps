@@ -5,4 +5,9 @@
     <string name="sda_company_name">Company Name:</string>
     <string name="sda_latest_price_change">Latest Price Change:</string>
     <string name="sda_price_change_percentage">Price Change Percentage:</string>
+    <string name="add_stock">Add Stock</string>
+    <string name="refresh_data">Refresh Data</string>
+    <string name="visit_stock_page">Visit Stock Page</string>
+    <string name="delete_stock">Delete Stock</string>
+    <string name="exit">Exit</string>
 </resources>
