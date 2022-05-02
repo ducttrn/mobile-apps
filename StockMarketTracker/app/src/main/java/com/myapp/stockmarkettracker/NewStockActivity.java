@@ -42,7 +42,6 @@ public class NewStockActivity extends AppCompatActivity {
             StockAsyncTask stockAsyncTask = new StockAsyncTask();
             try {
                 // Calling API and Get result
-                // Note: this approach might block the UI thread
                 newStock = stockAsyncTask.execute(newStockSymbol).get();
                 dbInstance.insertStock(newStock);
 

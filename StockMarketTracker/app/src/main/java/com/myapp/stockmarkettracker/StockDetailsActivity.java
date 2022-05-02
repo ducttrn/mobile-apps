@@ -14,6 +14,8 @@ public class StockDetailsActivity extends AppCompatActivity {
     private final StockSQLiteHelper dbInstance = StockSQLiteHelper.getInstance(this);
     private String symbol;
 
+    int LAUNCH_STOCK_PAGE_ACTIVITY = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +50,10 @@ public class StockDetailsActivity extends AppCompatActivity {
                 }
                 returnMainActivity();
             case R.id.refresh_data_option: updateStockData();
+            case R.id.visit_stock_page_option:
+                Intent intent = new Intent(this, StockPageActivity.class);
+                intent.putExtra("symbol", symbol);
+                startActivityForResult(intent, LAUNCH_STOCK_PAGE_ACTIVITY);
         }
 
         return super.onOptionsItemSelected(item);
@@ -58,7 +64,6 @@ public class StockDetailsActivity extends AppCompatActivity {
         StockAsyncTask stockAsyncTask = new StockAsyncTask();
         try {
             // Calling API and Get result
-            // Note: this approach might block the UI thread
             stock = stockAsyncTask.execute(symbol).get();
             dbInstance.updateStock(stock);
         } catch(Exception e) {
@@ -87,6 +92,10 @@ public class StockDetailsActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 
     /**
      *  Returning to MainActivity
