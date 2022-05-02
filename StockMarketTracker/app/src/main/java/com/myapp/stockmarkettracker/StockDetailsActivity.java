@@ -99,6 +99,8 @@ public class StockDetailsActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        // Update stock data when returning to this screen
+        updateStockData();
     }
 
     /**

@@ -2,7 +2,6 @@ package com.myapp.stockmarkettracker;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-import androidx.navigation.ui.AppBarConfiguration;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,7 +21,6 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements StockAdapter.OnItemClickedListener {
 
-    private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
 
     RecyclerView recyclerView;
@@ -30,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements StockAdapter.OnIt
     StockSQLiteHelper dbHelper;
     StockAdapter stockAdapter;
 
-    // Conss for Other Activitites
+    // Codes for Other Activities
     int LAUNCH_STOCK_ACTIVITY = 1;
     int LAUNCH_NEW_STOCK_ACTIVITY = 2;
 
@@ -152,11 +150,4 @@ public class MainActivity extends AppCompatActivity implements StockAdapter.OnIt
 
         return super.onOptionsItemSelected(item);
     }
-
-//    @Override
-//    public boolean onSupportNavigateUp() {
-//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-//        return NavigationUI.navigateUp(navController, appBarConfiguration)
-//                || super.onSupportNavigateUp();
-//    }
 }

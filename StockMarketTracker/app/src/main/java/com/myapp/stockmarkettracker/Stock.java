@@ -34,24 +34,4 @@ public class Stock {
     public double getPriceChangePercentage() {
         return priceChangePercentage;
     }
-
-    public void setSymbol(String symbol) {
-        this.symbol = symbol;
-    }
-
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
-    }
-
-    public void setLatestPrice(double latestPrice) {
-        this.latestPrice = latestPrice;
-    }
-
-    public void setLatestPriceChange(double latestPriceChange) {
-        this.latestPriceChange = latestPriceChange;
-    }
-
-    public void setPriceChangePercentage(double priceChangePercentage) {
-        this.priceChangePercentage = priceChangePercentage;
-    }
 }
