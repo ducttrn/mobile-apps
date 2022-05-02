@@ -3,6 +3,7 @@ package com.myapp.stockmarkettracker;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -15,6 +16,7 @@ public class NewStockActivity extends AppCompatActivity {
     //private final StockSQLiteHelper dbInstance = StockSQLiteHelper.getInstance(this);
     Button addButton;
     StockAPI stockAPI = new StockAPI();
+    private final StockSQLiteHelper dbInstance = StockSQLiteHelper.getInstance(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,9 +27,9 @@ public class NewStockActivity extends AppCompatActivity {
 
         // Default Stock info
         String DEFAULT_STOCK_COMPANY_NAME = "Sample Company";
-        nameInputBox.setText(DEFAULT_STOCK_COMPANY_NAME);
+        companyNameInputBox.setText(DEFAULT_STOCK_COMPANY_NAME);
 
-        EditText symbolInputBox = findViewById(R.id.new_symbol_input_box);
+        EditText symbolInputBox = findViewById(R.id.new_stock_symbol_input_box);
         String DEFAULT_STOCK_SYMBOL = "CCC";
         symbolInputBox.setText(DEFAULT_STOCK_SYMBOL);
 
@@ -45,16 +47,25 @@ public class NewStockActivity extends AppCompatActivity {
             EditText companyNameInputBox = findViewById(R.id.new_company_name_input_box);
             String newStockCompanyName = companyNameInputBox.getText().toString();
 
-            EditText symbolInputBox = findViewById(R.id.new_symbol_input_box);
+            EditText symbolInputBox = findViewById(R.id.new_stock_symbol_input_box);
             String newStockSymbol = symbolInputBox.getText().toString();
 
-            // Calling API
-            newStock = stockAPI.fetch(newStockSymbol);
+            StockAsyncTask stockAsyncTask = new StockAsyncTask();
+            try {
+                // Calling API and Get result
+                // Note: this approach might block the UI thread
+                newStock = stockAsyncTask.execute(newStockSymbol).get();
+            } catch(Exception e) {
+                e.printStackTrace();
+                newStock = null;
+            }
 
+            // Stock Symbol not found
+            // TODO: Notify user when unable to add Stock
             if (newStock == null) {
-                Toast.makeText(getApplicationContext(), "Failed to Add Stock",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(), "Failed to Add Stock",Toast.LENGTH_SHORT).show();
             } else {
-                dbInstance.addStock(newStock);
+                dbInstance.insertStock(newStock);
 
                 // Notify user that book added successfully
                 Toast.makeText(getApplicationContext(), "Stock Added Successfully",Toast.LENGTH_SHORT).show();
