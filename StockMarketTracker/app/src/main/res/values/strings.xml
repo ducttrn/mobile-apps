@@ -1,13 +1,15 @@
 <resources>
     <string name="app_name">StockMarketTracker</string>
-    <string name="sda_symbol">Symbol:</string>
+    <string name="symbol">Symbol:</string>
+    <string name="sda_symbol">Symbol: %1$s</string>
     <string name="sda_latest_stock_price">Latest Stock Price:</string>
     <string name="sda_company_name">Company Name:</string>
     <string name="sda_latest_price_change">Latest Price Change:</string>
-    <string name="sda_price_change_percentage">Price Change Percentage:</string>
+    <string name="sda_price_change_percentage">Price Change Pct.:</string>
     <string name="add_stock">Add Stock</string>
     <string name="refresh_data">Refresh Data</string>
     <string name="visit_stock_page">Visit Stock Page</string>
     <string name="delete_stock">Delete Stock</string>
     <string name="exit">Exit</string>
+    <string name="sample_symbol">Sample Symbol</string>
 </resources>

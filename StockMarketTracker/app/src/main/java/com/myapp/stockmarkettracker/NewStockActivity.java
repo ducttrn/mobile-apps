@@ -44,19 +44,15 @@ public class NewStockActivity extends AppCompatActivity {
                 // Calling API and Get result
                 // Note: this approach might block the UI thread
                 newStock = stockAsyncTask.execute(newStockSymbol).get();
-            } catch(Exception e) {
-                e.printStackTrace();
-                newStock = null;
-            }
-
-            if (newStock == null) {
-                Toast.makeText(getBaseContext(), "Invalid Stock Symbol",Toast.LENGTH_SHORT).show();
-            } else {
                 dbInstance.insertStock(newStock);
 
                 // Notify user that book added successfully
                 Toast.makeText(getApplicationContext(), "Stock Added Successfully",Toast.LENGTH_SHORT).show();
                 returnMainActivity();
+
+            } catch(Exception e) {
+                e.printStackTrace();
+                Toast.makeText(getBaseContext(), "Invalid Stock Symbol",Toast.LENGTH_SHORT).show();
             }
         });
     }
