@@ -56,7 +56,7 @@ public class StockSQLiteHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    private void insertStock(Stock stock) {
+    public void insertStock(Stock stock) {
         SQLiteDatabase db = getWritableDatabase();
 
         ContentValues stockValues = new ContentValues();

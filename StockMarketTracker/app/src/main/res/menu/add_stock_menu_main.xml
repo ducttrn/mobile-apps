@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.testapp.MainActivity">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/add_stock_option"
         android:orderInCategory="100"
         android:title="Add Stock"
         app:showAsAction="never" />
