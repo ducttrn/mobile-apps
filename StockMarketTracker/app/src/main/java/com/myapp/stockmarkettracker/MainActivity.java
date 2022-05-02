@@ -1,3 +1,8 @@
+/**
+ *
+ * BUILT BY JULIAN (PHONG) NGUYEN & BILL TRAN
+ *
+ */
 package com.myapp.stockmarkettracker;
 
 import androidx.appcompat.app.AppCompatActivity;
