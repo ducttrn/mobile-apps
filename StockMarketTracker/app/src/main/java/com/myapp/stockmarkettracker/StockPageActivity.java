@@ -37,12 +37,9 @@ public class StockPageActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        // Handle action when "Add Stock" is clicked
+        // Handle action when "Exit" is clicked
         if (id == R.id.exit_option_stock_page) {
             returnPreviousActivity();
         }

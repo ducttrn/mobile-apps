@@ -11,7 +11,7 @@ public class StockReaderContract {
     private StockReaderContract() {}
 
     public static class StockEntry implements BaseColumns {
-        // Database name and columns
+        // Table name and columns
         public static final String TABLE_NAME = "stocks";
         public static final String COLUMN_NAME_SYMBOL = "symbol";
         public static final String COLUMN_NAME_COMPANY_NAME = "companyName";

@@ -41,9 +41,6 @@ public class StockDetailsActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         // Handle action when "Add Stock" is clicked
@@ -51,11 +48,13 @@ public class StockDetailsActivity extends AppCompatActivity {
             updateStockData();
         }
         else if (id == R.id.visit_stock_page_option){
+            // Launch stock WebView
             Intent intent = new Intent(this, StockPageActivity.class);
             intent.putExtra("symbol", symbol);
             startActivityForResult(intent, LAUNCH_STOCK_PAGE_ACTIVITY);
         }
         else if (id == R.id.delete_stock_option) {
+            // Find stock in DB then delete
             Stock stock = dbInstance.searchStock(symbol);
             if (stock != null) {
                 dbInstance.deleteStock(stock);
@@ -73,15 +72,17 @@ public class StockDetailsActivity extends AppCompatActivity {
         Stock stock;
         StockAsyncTask stockAsyncTask = new StockAsyncTask();
         try {
-            // Calling API and Get result
+            // Calling API, get result, and update in the database
             stock = stockAsyncTask.execute(symbol).get();
             dbInstance.updateStock(stock);
         } catch(Exception e) {
+            // If cannot fetch stock data then read from DB
             e.printStackTrace();
             stock = dbInstance.searchStock(symbol);
         }
 
         if (stock != null) {
+            // Update display information
             TextView symbolDisplay = findViewById(R.id.sda_symbol);
             symbolDisplay.setText(getString(R.string.sda_symbol, stock.getSymbol()));
 
