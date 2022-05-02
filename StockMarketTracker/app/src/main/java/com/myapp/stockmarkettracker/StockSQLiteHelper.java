@@ -145,7 +145,8 @@ public class StockSQLiteHelper extends SQLiteOpenHelper {
     // Delete a Stock using Stock entity
     public void deleteStock(Stock stock) {
         SQLiteDatabase db = getWritableDatabase();
-        String selection = "_id = " + stock.getSymbol();
+        String selection = StockEntry.COLUMN_NAME_SYMBOL + " = " + "\"" + stock.getSymbol() + "\"";
+
         db.delete(StockEntry.TABLE_NAME, selection, null);
         db.close();
     }
