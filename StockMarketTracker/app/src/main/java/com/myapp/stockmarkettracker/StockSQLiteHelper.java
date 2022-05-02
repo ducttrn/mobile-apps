@@ -73,7 +73,7 @@ public class StockSQLiteHelper extends SQLiteOpenHelper {
     // Search for a stock by symbol
     public Stock searchStock(String symbol) {
         SQLiteDatabase db = getReadableDatabase();
-        String selection = StockEntry.COLUMN_NAME_SYMBOL + " = " + symbol;
+        String selection = StockEntry.COLUMN_NAME_SYMBOL + " = " + "\"" + symbol + "\"";
 
         String[] projection = {
                 StockEntry.COLUMN_NAME_SYMBOL,
@@ -137,7 +137,7 @@ public class StockSQLiteHelper extends SQLiteOpenHelper {
         stockValues.put(StockEntry.COLUMN_NAME_LATEST_PRICE_CHANGE, stock.getLatestPriceChange());
         stockValues.put(StockEntry.COLUMN_NAME_PRICE_CHANGE_PERCENTAGE, stock.getPriceChangePercentage());
 
-        String selection = "_id = " + stock.getSymbol();
+        String selection = StockEntry.COLUMN_NAME_SYMBOL + " = " + "\"" + stock.getSymbol() + "\"";
         db.update(StockEntry.TABLE_NAME, stockValues, selection, null);
         db.close();
     }

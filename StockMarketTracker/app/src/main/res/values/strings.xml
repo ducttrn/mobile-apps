@@ -2,10 +2,10 @@
     <string name="app_name">StockMarketTracker</string>
     <string name="symbol">Symbol:</string>
     <string name="sda_symbol">Symbol: %1$s</string>
-    <string name="sda_latest_stock_price">Latest Stock Price: %1$.2f</string>
+    <string name="sda_latest_stock_price">Latest Stock Price: %1$.4f</string>
     <string name="sda_company_name">Company Name: %1$s</string>
-    <string name="sda_latest_price_change">Latest Price Change: %1$.2f</string>
-    <string name="sda_price_change_percentage">Price Change Pct.: %1$.2f</string>
+    <string name="sda_latest_price_change">Latest Price Change: %1$.4f</string>
+    <string name="sda_price_change_percentage">Price Change Pct.: %1$.4f</string>
     <string name="add_stock">Add Stock</string>
     <string name="refresh_data">Refresh Data</string>
     <string name="visit_stock_page">Visit Stock Page</string>
