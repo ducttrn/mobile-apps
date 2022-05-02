@@ -3,7 +3,6 @@ package com.myapp.stockmarkettracker;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -15,7 +14,6 @@ public class NewStockActivity extends AppCompatActivity {
     // Instance variable to interact with SQLite database
     //private final StockSQLiteHelper dbInstance = StockSQLiteHelper.getInstance(this);
     Button addButton;
-    StockAPI stockAPI = new StockAPI();
     private final StockSQLiteHelper dbInstance = StockSQLiteHelper.getInstance(this);
 
     @Override
