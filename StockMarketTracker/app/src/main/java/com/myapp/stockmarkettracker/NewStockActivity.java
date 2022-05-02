@@ -44,6 +44,7 @@ public class NewStockActivity extends AppCompatActivity {
             EditText symbolInputBox = findViewById(R.id.new_stock_symbol_input_box);
             String newStockSymbol = symbolInputBox.getText().toString();
 
+            // Executing AsyncTask to query for specific stock via API
             StockAsyncTask stockAsyncTask = new StockAsyncTask();
             try {
                 // Calling API and Get result

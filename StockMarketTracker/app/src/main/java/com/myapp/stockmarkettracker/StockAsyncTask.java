@@ -6,7 +6,6 @@
 package com.myapp.stockmarkettracker;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -23,9 +22,15 @@ import javax.net.ssl.HttpsURLConnection;
 
 public class StockAsyncTask extends AsyncTask<String, Void, Stock> {
 
+    // Constants
     private final String stockURL = "https://cloud.iexapis.com/stable/stock/";
     private final String API_KEY = "pk_34c03f413dd44fa48e6d6fa0c7685639";
 
+    /**
+     *  Calling API + Retrieve data
+     * @param stockSymbol
+     * @return
+     */
     private Stock retrieveData(String stockSymbol) {
         URL url;
         try {
@@ -70,7 +75,9 @@ public class StockAsyncTask extends AsyncTask<String, Void, Stock> {
     }
 
     /**
-     * Parse String Buffer to JSON and convert to Stock Obj
+     * Parse Response from String to JSON and convert to a Stock Object
+     * @param response
+     * @return
      */
     public Stock parseJSONtoStock(String response) {
         Stock stock;
@@ -81,7 +88,6 @@ public class StockAsyncTask extends AsyncTask<String, Void, Stock> {
 
         try {
             JSONObject data = new JSONObject(response);
-            Log.d("DEBUG", data.toString());
 
             stock = new Stock(
                     data.getString("symbol"),

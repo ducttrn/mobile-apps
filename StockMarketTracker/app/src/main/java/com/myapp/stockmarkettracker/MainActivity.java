@@ -41,8 +41,10 @@ public class MainActivity extends AppCompatActivity implements StockAdapter.OnIt
      *  Loading stocks from Database & put into rows on UI
      */
     private void loadData() {
+        // Query all stocks from DB
         stockList = dbHelper.getAllStocks();
 
+        // Frame for Stock list
         stockAdapter = new StockAdapter(stockList, this);
         recyclerView.setAdapter(stockAdapter);
     }
@@ -52,22 +54,20 @@ public class MainActivity extends AppCompatActivity implements StockAdapter.OnIt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
-
         // Option list for Adding new Stock
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         // Init DB instance
         dbHelper = StockSQLiteHelper.getInstance(this);
+
+        // Filling the StockList with Stock data persisted in DB
         recyclerView = findViewById(R.id.stock_list);
         loadData();
-
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
-        addDividers();
 
+        addDividers();
     }
 
     /**
@@ -133,6 +133,11 @@ public class MainActivity extends AppCompatActivity implements StockAdapter.OnIt
         super.onDestroy();
     }
 
+    /**
+     * Handle OptionBar Drop down menu list
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
