@@ -90,15 +90,15 @@ public class MainActivity extends AppCompatActivity implements StockAdapter.OnIt
     }
 
     /**
-     * TODO: Handler function for clicking a Stock item action
+     * Handler function for clicking a Stock item action
      * @param position
      */
     @Override
     public void onStockClick(int position) {
-        // Launch StockActivity when a book is clicked
-//        Intent intent = new Intent(this, StockActivity.class);
-//        intent.putExtra("stockSymble", bookList.get(position).getId());
-//        startActivityForResult(intent, LAUNCH_BOOK_ACTIVITY);
+        // Launch StockActivity when a stock is clicked
+        Intent intent = new Intent(this, StockDetailsActivity.class);
+        intent.putExtra("symbol", stockList.get(position).getSymbol());
+        startActivityForResult(intent, LAUNCH_STOCK_ACTIVITY);
     }
 
     public void onAddStockClick() {
