@@ -8,10 +8,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 public class StockDetailsActivity extends AppCompatActivity {
     private final StockSQLiteHelper dbInstance = StockSQLiteHelper.getInstance(this);
+    private String symbol;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,24 +20,8 @@ public class StockDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_stock_details);
 
         Intent intent = getIntent();
-        String symbol = intent.getStringExtra("symbol");
-
-        Stock stock;
-        StockAsyncTask stockAsyncTask = new StockAsyncTask();
-        try {
-            // Calling API and Get result
-            // Note: this approach might block the UI thread
-            stock = stockAsyncTask.execute(symbol).get();
-            dbInstance.updateStock(stock);
-        } catch(Exception e) {
-            e.printStackTrace();
-            stock = dbInstance.searchStock(symbol);
-        }
-
-        if (stock != null) {
-            TextView symbol_display = findViewById(R.id.sda_symbol);
-            symbol_display.setText(getString(R.string.sda_symbol, stock.getSymbol()));
-        }
+        symbol = intent.getStringExtra("symbol");
+        updateStockData();
     }
 
     @Override
@@ -54,11 +39,52 @@ public class StockDetailsActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         // Handle action when "Add Stock" is clicked
-        if (id == R.id.exit_option) {
-            returnMainActivity();
+        switch (id) {
+            case R.id.exit_option: returnMainActivity();
+            case R.id.delete_stock_option:
+                Stock stock =  dbInstance.searchStock(symbol);
+                if (stock != null){
+                    dbInstance.deleteStock(stock);
+                }
+                returnMainActivity();
+            case R.id.refresh_data_option: updateStockData();
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void updateStockData() {
+        Stock stock;
+        StockAsyncTask stockAsyncTask = new StockAsyncTask();
+        try {
+            // Calling API and Get result
+            // Note: this approach might block the UI thread
+            stock = stockAsyncTask.execute(symbol).get();
+            dbInstance.updateStock(stock);
+        } catch(Exception e) {
+            e.printStackTrace();
+            stock = dbInstance.searchStock(symbol);
+        }
+
+        if (stock != null) {
+            TextView symbolDisplay = findViewById(R.id.sda_symbol);
+            symbolDisplay.setText(getString(R.string.sda_symbol, stock.getSymbol()));
+
+            TextView nameDisplay = findViewById(R.id.sda_company_name);
+            nameDisplay.setText(getString(R.string.sda_company_name, stock.getCompanyName()));
+
+            TextView priceDisplay = findViewById(R.id.sda_latest_stock_price);
+            priceDisplay.setText(getString(R.string.sda_latest_stock_price, stock.getLatestPrice()));
+
+            TextView changeDisplay = findViewById(R.id.sda_latest_price_change);
+            changeDisplay.setText(getString(R.string.sda_latest_price_change, stock.getLatestPriceChange()));
+
+            TextView pctDisplay = findViewById(R.id.sda_price_change_percentage);
+            pctDisplay.setText(getString(R.string.sda_price_change_percentage, stock.getPriceChangePercentage()));
+        }
+        else {
+            returnMainActivity();
+        }
     }
 
 
