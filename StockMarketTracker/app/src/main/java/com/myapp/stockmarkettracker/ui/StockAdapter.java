@@ -51,8 +51,11 @@ public class StockAdapter extends RecyclerView.Adapter<StockViewHolder> {
     public void onBindViewHolder(@NonNull StockViewHolder stockViewHolder, int position) {
         Stock stock = stockList.get(position);
 
-        // Display stock title
+        // Display stock company's name
         stockViewHolder.setStockName(stock.getCompanyName());
+
+        // Display stock Symbol
+        stockViewHolder.setStockSymbol(stock.getSymbol());
     }
 
     /**
