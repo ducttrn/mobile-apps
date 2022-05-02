@@ -5,6 +5,9 @@
  */
 package com.myapp.stockmarkettracker;
 
+/**
+ * Class to represent stocks as entities
+ */
 public class Stock {
     private String symbol;
     private String companyName;

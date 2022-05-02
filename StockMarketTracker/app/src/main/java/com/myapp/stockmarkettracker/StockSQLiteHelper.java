@@ -62,6 +62,7 @@ public class StockSQLiteHelper extends SQLiteOpenHelper {
     }
 
     public void insertStock(Stock stock) {
+        // Insert a new stock into the DB
         SQLiteDatabase db = getWritableDatabase();
 
         ContentValues stockValues = new ContentValues();
@@ -75,8 +76,8 @@ public class StockSQLiteHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    // Search for a stock by symbol
     public Stock searchStock(String symbol) {
+        // Search for a stock by symbol
         SQLiteDatabase db = getReadableDatabase();
         String selection = StockEntry.COLUMN_NAME_SYMBOL + " = " + "\"" + symbol + "\"";
 
@@ -107,6 +108,7 @@ public class StockSQLiteHelper extends SQLiteOpenHelper {
     }
 
     public ArrayList<Stock> getAllStocks() {
+        // Get all stocks in the DB
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.query(
                 StockEntry.TABLE_NAME, null, null, null, null, null, null, null
@@ -133,8 +135,8 @@ public class StockSQLiteHelper extends SQLiteOpenHelper {
         return Stocks;
     }
 
-    // Update a Stock using Stock entity
     public void updateStock(Stock stock) {
+        // Update a Stock using Stock entity
         SQLiteDatabase db = getWritableDatabase();
         ContentValues stockValues = new ContentValues();
         stockValues.put(StockEntry.COLUMN_NAME_COMPANY_NAME, stock.getCompanyName());
@@ -147,8 +149,8 @@ public class StockSQLiteHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    // Delete a Stock using Stock entity
     public void deleteStock(Stock stock) {
+        // Delete a Stock using Stock entity
         SQLiteDatabase db = getWritableDatabase();
         String selection = StockEntry.COLUMN_NAME_SYMBOL + " = " + "\"" + stock.getSymbol() + "\"";
 
