@@ -6,6 +6,7 @@
 package com.myapp.stockmarkettracker;
 
 import android.os.AsyncTask;
+import io.github.pixee.security.BoundedLineReader;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -56,7 +57,7 @@ public class StockAsyncTask extends AsyncTask<String, Void, Stock> {
 
             String line;
 
-            while ((line = reader.readLine()) != null) {
+            while ((line = BoundedLineReader.readLine(reader, 5_000_000)) != null) {
                 stringBuilder.append(line);
             }
         } catch (Exception e) {

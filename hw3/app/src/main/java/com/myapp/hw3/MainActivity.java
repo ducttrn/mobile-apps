@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import io.github.pixee.security.BoundedLineReader;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -89,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         try(BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8))){
             StringBuilder response = new StringBuilder();
             String responseLine;
-            while ((responseLine = br.readLine()) != null) {
+            while ((responseLine = BoundedLineReader.readLine(br, 5_000_000)) != null) {
                 response.append(responseLine.trim());
             }
 
