@@ -6,6 +6,8 @@
 package com.myapp.stockmarkettracker;
 
 import android.os.AsyncTask;
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -34,7 +36,7 @@ public class StockAsyncTask extends AsyncTask<String, Void, Stock> {
     private Stock retrieveData(String stockSymbol) {
         URL url;
         try {
-            url = new URL(stockURL + stockSymbol + "/quote?token=" + API_KEY);
+            url = Urls.create(stockURL + stockSymbol + "/quote?token=" + API_KEY, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
         } catch (MalformedURLException e) {
             //e.printStackTrace();
             return null;
